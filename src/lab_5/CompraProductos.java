@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,9 +17,23 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class CompraProductos extends javax.swing.JFrame {
+
+    String nombre;
+    String calculo = "";
+    String sexo1;
+    String sexo2;
+    String edad;
+    String fecha1;
+    String fecha2;
+    String fecha3;
+    int genero;
+    int fechacompra;
+    String ideProduct;
+
     private Connection connection = null;
     private ResultSet rs = null;
     private Statement s = null;
+
     public void Conexion() {
         if (connection != null) {
             return;
@@ -36,11 +51,13 @@ public class CompraProductos extends javax.swing.JFrame {
             System.out.println("Problem when connecting to the database");
         }
     }
+
     /**
      * Creates new form CompraProductos
      */
     public CompraProductos() {
         initComponents();
+
     }
 
     /**
@@ -55,142 +72,221 @@ public class CompraProductos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        A = new javax.swing.JRadioButton();
+        B = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        R1 = new javax.swing.JTextField();
+        R2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Lista = new javax.swing.JList<String>();
+        campo = new javax.swing.JComboBox();
+        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        f1 = new javax.swing.JRadioButton();
+        w = new javax.swing.JTextField();
+        f2 = new javax.swing.JRadioButton();
+        f3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Compra de producto");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 23, 117, -1));
 
         jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, 30));
 
         jLabel3.setText("Edad");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, 30));
 
-        jRadioButton1.setText("M");
+        A.setText("Masculino");
+        A.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AActionPerformed(evt);
+            }
+        });
+        getContentPane().add(A, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 134, -1, -1));
 
-        jRadioButton2.setText("F");
+        B.setText("Femenino");
+        B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BActionPerformed(evt);
+            }
+        });
+        getContentPane().add(B, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 134, -1, -1));
 
         jLabel4.setText("Sexo");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 138, -1, -1));
+        getContentPane().add(R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 137, 30));
+        getContentPane().add(R2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 137, 30));
 
-        jButton1.setText("Mostrar");
+        jButton1.setText("Cargar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
-        Lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                ListaValueChanged(evt);
+        getContentPane().add(campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 201, -1));
+
+        jButton2.setText("Compra");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(Lista);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 219, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 226, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(jTextField1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(20, 20, 20)
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jLabel4)
-                    .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                .addGap(99, 99, 99))
-        );
+        jLabel5.setText("Fecha");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 181, -1, -1));
+
+        f1.setText("01/12/2017");
+        f1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(f1, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 177, -1, -1));
+        getContentPane().add(w, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 45, -1));
+
+        f2.setText("02/12/2017");
+        f2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(f2, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 177, -1, -1));
+
+        f3.setText("03/12/2017");
+        f3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                f3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(f3, new org.netbeans.lib.awtextra.AbsoluteConstraints(234, 177, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_ListaValueChanged
-        String Nombre1 = Lista.getSelectedValue();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        cargarniños();
+        cargaIDproduct();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Conexion();
         try {
-            s = connection.createStatement();
-            rs = s.executeQuery("SELECT nombre,cedula,edad,sexo FROM Usuario WHERE nombre = '" + Nombre1 + "'");
-            while (rs.next()) {
-                R1.setText(rs.getString("nombre"));
-                R2.setText(rs.getString("cedula"));
-                R3.setText(rs.getString("edad"));
-                R4.setText(rs.getString("sexo"));
-
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_ListaValueChanged
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-                String nombre = R1.getText();
-                int cedula = Integer.parseInt(R2.getText());
-                int edad = Integer.parseInt(R3.getText());
-                String sexo = R4.getText();
-
-                s = connection.createStatement();
-                int z = s.executeUpdate("UPDATE usuario SET nombre ='" + nombre + "', cedula = '" + cedula + "', edad = '" + edad + "', sexo = '" + sexo + "' WHERE nombre  = '" + nombre2 + "'");
-                if (z == 1) {
-                    JOptionPane.showMessageDialog(rootPane, "Se a modificado correctamente");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Modificacion erronea");
+            nombre = R1.getText();
+            edad = R2.getText();
+            sexo1 = A.getText();
+            sexo2 = B.getText();
+            fecha1 = f1.getText();
+            fecha2 = f2.getText();
+            fecha3 = f3.getText();
+            ideProduct = w.getText();
+            if (genero == 1) {
+                if (fechacompra == 0) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo1 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha1 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
+                } else if (fechacompra == 1) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo1 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha2 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
+                } else if (fechacompra == 2) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo1 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha3 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
                 }
-            } catch (Exception e) {
-                System.out.println(e);
+            } else if (genero == 2) {
+                if (fechacompra == 0) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo2 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha1 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
+                } else if (fechacompra == 1) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo2 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha2 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
+                } else if (fechacompra == 2) {
+                    s = connection.createStatement();
+                    int z = s.executeUpdate("INSERT INTO compras (nombreusu,edad,sexo,identificador_product,fecha) VALUES ('" + nombre + "', '" + Integer.parseInt(edad) + "', '" + sexo1 + "', '" + Integer.parseInt(ideProduct) + "', '" + fecha3 + "')");
+                    if (z == 1) {
+                        System.out.println("Se agregó el registro de manera exitosa");
+                        JOptionPane.showMessageDialog(rootPane, "A sido registrado con exito");
+                    } else {
+                        System.out.println("Error al insertar el registro");
+                    }
+                }
             }
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AActionPerformed
+        if (A.isSelected()) {
+            B.setSelected(false);
+            genero = 1;
+
+        }
+    }//GEN-LAST:event_AActionPerformed
+
+    private void BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActionPerformed
+        if (B.isSelected()) {
+            A.setSelected(false);
+            genero = 2;
+        }
+    }//GEN-LAST:event_BActionPerformed
+
+    private void f1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f1ActionPerformed
+        if (f1.isSelected()) {
+            f2.setSelected(false);
+            f3.setSelected(false);
+            fechacompra = 1;
+        }
+    }//GEN-LAST:event_f1ActionPerformed
+
+    private void f2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f2ActionPerformed
+        if (f2.isSelected()) {
+            f3.setSelected(false);
+            f1.setSelected(false);
+            fechacompra = 2;
+        }
+    }//GEN-LAST:event_f2ActionPerformed
+
+    private void f3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_f3ActionPerformed
+        if (f3.isSelected()) {
+            f2.setSelected(false);
+            f1.setSelected(false);
+            fechacompra = 3;
+        }
+    }//GEN-LAST:event_f3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,17 +324,100 @@ public class CompraProductos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Lista;
+    private javax.swing.JRadioButton A;
+    private javax.swing.JRadioButton B;
+    private javax.swing.JTextField R1;
+    private javax.swing.JTextField R2;
+    private javax.swing.JComboBox campo;
+    private javax.swing.JRadioButton f1;
+    private javax.swing.JRadioButton f2;
+    private javax.swing.JRadioButton f3;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField w;
     // End of variables declaration//GEN-END:variables
+    public void cargarniños() {
+        DefaultListModel Gabriel = new DefaultListModel();
+        Conexion();
+        try {
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT nombre From productos");
+            while (rs.next()) {
+                Gabriel.addElement(rs.getString("nombre"));
+                campo.addItem(rs.getString("nombre"));
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+
+        campo.setSelectedItem(Gabriel);
+
+    }
+
+    public void cargaIDproduct() {
+        DefaultListModel Gabriel = new DefaultListModel();
+        Conexion();
+        try {
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT identificador From productos");
+            while (rs.next()) {
+               
+                    w.setText(rs.getString("identificador"));
+                
+                
+
+            }
+        } catch (Exception e) {
+            System.out.println(" Error");
+        }
+
+        campo.setSelectedItem(Gabriel);
+      
+
+    }
+
+    public void comparar() {
+        Conexion();
+        try {
+           
+            int edad = Integer.parseInt(R2.getText());
+            if (edad >= 0 || edad <= 12) {
+                calculo += "niño";
+             int id = Integer.parseInt(R1.getText());
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT identificador,nombre,precio,tipo FROM productos WHERE tipo  = '" + calculo + "'");
+            while (rs.next()) {
+
+                w.setText(rs.getString("identificador"));
+              
+
+            }
+            } else if (edad >= 13 || edad <= 17) {
+                calculo += "joven";
+            } else if (edad >= 18) {
+                calculo += "adulto";
+            }
+           
+
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
+        }
+    }
+
+    public void condiciones() {
+        int edad = Integer.parseInt(R2.getText());
+        if (edad >= 0 || edad <= 12) {
+
+        } else if (edad >= 13 || edad <= 17) {
+
+        } else if (edad >= 18) {
+
+        }
+    }
 }
