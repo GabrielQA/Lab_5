@@ -17,6 +17,7 @@ import javax.swing.DefaultListModel;
  */
 public class Reportes extends javax.swing.JFrame {
     String Var;
+    String report2;
     String hasta;
   private Connection connection = null;
     private ResultSet rs = null;
@@ -71,6 +72,11 @@ public class Reportes extends javax.swing.JFrame {
         A1 = new javax.swing.JRadioButton();
         B1 = new javax.swing.JRadioButton();
         C1 = new javax.swing.JRadioButton();
+        A2 = new javax.swing.JRadioButton();
+        B2 = new javax.swing.JRadioButton();
+        C2 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +158,36 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
+        A2.setText("niño");
+        A2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                A2ActionPerformed(evt);
+            }
+        });
+
+        B2.setText("adulto");
+        B2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B2ActionPerformed(evt);
+            }
+        });
+
+        C2.setText("joven");
+        C2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                C2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Desde");
+
+        jButton4.setText("Buscar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -161,7 +197,6 @@ public class Reportes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +217,19 @@ public class Reportes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(B1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(C1)))))
+                                .addComponent(C1))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(A2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(C2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(B2))
+                            .addComponent(jButton4))))
                 .addContainerGap(209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -197,9 +244,7 @@ public class Reportes extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(A)
@@ -212,6 +257,18 @@ public class Reportes extends javax.swing.JFrame {
                             .addComponent(A1)
                             .addComponent(B1)
                             .addComponent(C1))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(A2)
+                            .addComponent(C2)
+                            .addComponent(B2))
+                        .addGap(5, 5, 5)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -291,6 +348,47 @@ public class Reportes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_C1ActionPerformed
 
+    private void A2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_A2ActionPerformed
+      if (A2.isSelected()) {
+            B2.setSelected(false);
+            C2.setSelected(false);
+            report2+=A2.isSelected();
+        }
+    }//GEN-LAST:event_A2ActionPerformed
+
+    private void B2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B2ActionPerformed
+      if (B2.isSelected()) {
+            A2.setSelected(false);
+            C2.setSelected(false);
+            report2+=B2.isSelected();
+        }
+    }//GEN-LAST:event_B2ActionPerformed
+
+    private void C2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_C2ActionPerformed
+      if (C2.isSelected()) {
+            B2.setSelected(false);
+            A2.setSelected(false);
+            report2+=C2.isSelected();
+        }
+    }//GEN-LAST:event_C2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Conexion();
+        try {
+            String report =report2;
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT identificador,nombre,precio,tipo FROM productos WHERE tipo  = '" + report + "'");
+           
+               mostrar2();
+                
+               
+            
+
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -329,18 +427,23 @@ public class Reportes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton A;
     private javax.swing.JRadioButton A1;
+    private javax.swing.JRadioButton A2;
     private javax.swing.JRadioButton B;
     private javax.swing.JRadioButton B1;
+    private javax.swing.JRadioButton B2;
     private javax.swing.JRadioButton C;
     private javax.swing.JRadioButton C1;
+    private javax.swing.JRadioButton C2;
     private javax.swing.JList<String> Lista;
     private javax.swing.JList<String> Lista1;
     private javax.swing.JList<String> Lista2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -376,5 +479,24 @@ public void mostrar(){
         }
         
         Lista.setModel(Gabrielo);
+}
+    public void mostrar2(){
+    DefaultListModel Gabrielo = new DefaultListModel();
+        Conexion();
+        try {
+            s = connection.createStatement();
+             rs = s.executeQuery("SELECT precio From productos");
+              rs = s.executeQuery("SELECT tipo From productos");
+            rs = s.executeQuery("SELECT nombre,precio,tipo From productos");
+            while (rs.next()) {
+                Gabrielo.addElement(rs.getString("nombre"));
+                  Gabrielo.addElement(rs.getString("precio"));
+                    Gabrielo.addElement(rs.getString("tipo"));
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+        
+        Lista1.setModel(Gabrielo);
 }
 }
