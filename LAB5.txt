@@ -1,0 +1,57 @@
+-- Database: labfive
+
+-- DROP DATABASE labfive;
+
+CREATE DATABASE labfive
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Spain.1252'
+    LC_CTYPE = 'Spanish_Spain.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Table: public.compras
+
+-- DROP TABLE public.compras;
+
+CREATE TABLE public.compras
+(
+    nombreusu character varying COLLATE pg_catalog."default",
+    edad integer,
+    sexo character varying COLLATE pg_catalog."default",
+    identificador_product integer,
+    fecha character varying COLLATE pg_catalog."default",
+    CONSTRAINT identificador FOREIGN KEY (identificador_product)
+        REFERENCES public.productos (identificador) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.compras
+    OWNER to postgres;
+
+
+-- Table: public.productos
+
+-- DROP TABLE public.productos;
+
+CREATE TABLE public.productos
+(
+    identificador integer NOT NULL,
+    nombre character varying COLLATE pg_catalog."default",
+    precio integer,
+    tipo character varying COLLATE pg_catalog."default",
+    CONSTRAINT productos_pkey PRIMARY KEY (identificador)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.productos
+    OWNER to postgres;
