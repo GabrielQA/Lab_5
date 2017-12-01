@@ -400,8 +400,26 @@ public class CompraProductos extends javax.swing.JFrame {
             }
             } else if (edad >= 13 || edad <= 17) {
                 calculo += "joven";
+                 int id = Integer.parseInt(R1.getText());
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT identificador,nombre,precio,tipo FROM productos WHERE tipo  = '" + calculo + "'");
+            while (rs.next()) {
+
+                w.setText(rs.getString("identificador"));
+              
+
+            }
             } else if (edad >= 18) {
                 calculo += "adulto";
+                 int id = Integer.parseInt(R1.getText());
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT identificador,nombre,precio,tipo FROM productos WHERE tipo  = '" + calculo + "'");
+            while (rs.next()) {
+
+                w.setText(rs.getString("identificador"));
+              
+
+            }
             }
            
 
